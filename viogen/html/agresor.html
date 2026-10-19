@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario académico de datos de agresor e indicadores de referencia.">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>Agresor | VioGen</title>
+    <link rel="stylesheet" href="../css/forms.css">
+    <script src="../js/forms.js" defer></script>
+</head>
+<body class="form-page aggressor-page">
+    <header class="site-header">
+        <a class="brand" href="../index.php" aria-label="VioGen, volver al inicio">
+            <span class="brand-mark" aria-hidden="true">V</span>
+            <span>VioGen<span class="brand-period">.</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación de formularios">
+            <a href="../formulario-victima.php">Víctima</a>
+            <a href="../formulario-incidencia.php">Incidencia</a>
+            <a class="nav-cta" href="../index.php">Inicio <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <div class="breadcrumb"><a href="../index.php">Inicio</a><span aria-hidden="true">/</span><span>Agresor</span></div>
+        <section class="form-intro">
+            <div>
+                <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Ficha 02 · Persona señalada</p>
+                <h1>Datos del <span>agresor.</span></h1>
+                <p class="intro-text">Registro estructurado de información relevante para una valoración posterior.</p>
+            </div>
+            <div class="form-art aggressor-art" aria-hidden="true"><span>02</span><i>◇</i><b>datos claros,<br>contexto completo</b></div>
+        </section>
+
+        <div class="notice" role="note">
+            <span class="notice-symbol" aria-hidden="true">i</span>
+            <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. Esta página no guarda ni envía información y no calcula un nivel de riesgo.</p>
+        </div>
+
+        <form class="data-form" autocomplete="off">
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">01</span>
+                    <div><h2>Datos de la persona</h2><p>Campos compartidos con la ficha de víctima.</p></div>
+                </div>
+                <div class="field-grid">
+                    <div class="field">
+                        <label for="aggressor-name">Nombre completo</label>
+                        <input id="aggressor-name" name="nombre" type="text" placeholder="Nombre y apellidos">
+                    </div>
+                    <div class="field">
+                        <label for="aggressor-dni">DNI / documento identificativo</label>
+                        <input id="aggressor-dni" name="dni" type="text" placeholder="Número de documento">
+                    </div>
+                    <div class="field">
+                        <label for="aggressor-email">Correo electrónico</label>
+                        <input id="aggressor-email" name="email" type="email" placeholder="nombre@ejemplo.com">
+                    </div>
+                    <div class="field">
+                        <label for="aggressor-address">Dirección</label>
+                        <input id="aggressor-address" name="direccion" type="text" placeholder="Dirección (datos ficticios)">
+                    </div>
+                    <div class="field field-full">
+                        <label for="aggressor-notes">Datos de interés <span class="optional">Opcional</span></label>
+                        <textarea id="aggressor-notes" name="datos-interes" rows="4" placeholder="Anotaciones generales para el prototipo"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section risk-section">
+                <div class="section-title">
+                    <span class="section-number">02</span>
+                    <div><h2>Indicadores de contexto</h2><p>3 de los 10 indicadores previstos en el prototipo.</p></div>
+                </div>
+                <p class="risk-guidance">Registra únicamente lo que conste en la información disponible. “No consta” no equivale a “No”.</p>
+                <p class="indicator-progress" data-indicator-progress role="status" aria-live="polite">0 de 3 indicadores respondidos</p>
+                <div class="indicator-list">
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">04</span> ¿Constan antecedentes de violencia hacia la pareja u otras personas?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">05</span> ¿Consta el incumplimiento de medidas de protección o alejamiento?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">06</span> ¿Se describen conductas de control, acoso o vigilancia persistente?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[control-acoso]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[control-acoso]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[control-acoso]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                </div>
+            </section>
+
+            <div class="form-footer">
+                <p>La evaluación de los indicadores y el guardado se implementarán en una fase posterior.</p>
+                <button class="button button-primary" type="button" disabled>Guardado no disponible</button>
+            </div>
+        </form>
+
+        <nav class="form-switch" aria-label="Cambiar de formulario">
+            <a href="../formulario-victima.php"><span aria-hidden="true">←</span> Ir a víctima</a>
+            <a href="../formulario-incidencia.php">Ir a incidencia <span aria-hidden="true">→</span></a>
+        </nav>
+    </main>
+    <footer class="site-footer">
+        <div class="page-shell footer-inner">
+            <a class="brand footer-brand" href="../index.php"><span class="brand-mark" aria-hidden="true">V</span><span>VioGen<span class="brand-period">.</span></span></a>
+            <p>Prototipo académico · No almacena datos</p>
+            <a class="footer-top" href="../index.php">Volver al inicio ↑</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario académico para describir una incidencia e indicadores de referencia.">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>Incidencia | VioGen</title>
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+<body class="form-page incident-page">
+    <form id="page-navigation" action="formulario-incidencia.php" method="post"></form>
+    <header class="site-header">
+        <button class="brand" type="submit" form="page-navigation" name="ir_inicio" value="1" aria-label="VioGen, volver al inicio">
+            <span class="brand-mark" aria-hidden="true">V</span>
+            <span>VioGen<span class="brand-period">.</span></span>
+        </button>
+    </header>
+
+    <main class="page-shell">
+        <div class="breadcrumb"><span>Inicio</span><span aria-hidden="true">/</span><span>Incidencia</span></div>
+        <section class="form-intro">
+            <div>
+                <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Ficha 03 · Registro de hechos</p>
+                <h1>Detalle de la <span>incidencia.</span></h1>
+                <p class="intro-text">Describe el episodio de forma clara y registra circunstancias observables.</p>
+            </div>
+            <div class="form-art incident-art" aria-hidden="true"><span>03</span><i>✳</i><b>hechos y contexto,<br>en orden</b></div>
+        </section>
+
+        <div class="notice" role="note">
+            <span class="notice-symbol" aria-hidden="true">i</span>
+            <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. Esta página no guarda ni envía información y no calcula un nivel de riesgo.</p>
+        </div>
+
+        <form class="data-form" autocomplete="off">
+            <section class="form-section">
+                <div class="section-title">
+                    <span class="section-number">01</span>
+                    <div><h2>Descripción del episodio</h2><p>Registra información básica y una descripción breve.</p></div>
+                </div>
+                <div class="field-grid">
+                    <div class="field">
+                        <label for="incident-date">Fecha</label>
+                        <input id="incident-date" name="fecha" type="date">
+                    </div>
+                    <div class="field">
+                        <label for="incident-time">Hora aproximada <span class="optional">Opcional</span></label>
+                        <input id="incident-time" name="hora" type="time">
+                    </div>
+                    <div class="field field-full">
+                        <label for="incident-location">Lugar de la incidencia</label>
+                        <input id="incident-location" name="lugar" type="text" placeholder="Lugar (utiliza datos ficticios)">
+                    </div>
+                    <div class="field field-full">
+                        <label for="incident-description">Descripción de los hechos</label>
+                        <textarea id="incident-description" name="descripcion" rows="5" placeholder="Describe de forma objetiva qué ocurrió"></textarea>
+                        <span class="field-hint">Evita interpretaciones; anota los hechos conocidos.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section risk-section">
+                <div class="section-title">
+                    <span class="section-number">02</span>
+                    <div><h2>Indicadores del episodio</h2><p>4 de los 10 indicadores previstos en el prototipo.</p></div>
+                </div>
+                <p class="risk-guidance">Responde según la información disponible. “No consta” no equivale a “No”. Estos datos aún no generan una valoración.</p>
+                <div class="indicator-list">
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">07</span> ¿Se produjo estrangulamiento o intento de asfixia?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[asfixia]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[asfixia]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[asfixia]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">08</span> ¿Se utilizó o amenazó con utilizar un arma u objeto peligroso?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[arma]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[arma]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[arma]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">09</span> ¿Hubo lesiones que requirieron atención sanitaria?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[lesiones]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[lesiones]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[lesiones]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">10</span> ¿Había menores u otras personas dependientes presentes o expuestas?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                </div>
+            </section>
+
+            <div class="form-footer">
+                <p>La evaluación de los indicadores y el guardado se implementarán en una fase posterior.</p>
+                <button class="button button-primary" type="button" name="guardar_formulario_incidencia" disabled>Guardado no disponible</button>
+            </div>
+        </form>
+
+        <nav class="form-switch" aria-label="Cambiar de formulario">
+            <button type="submit" form="page-navigation" name="ir_victima"><span aria-hidden="true">←</span> Ir a víctima</button>
+            <button type="submit" form="page-navigation" name="ir_agresor">Ir a agresor <span aria-hidden="true">→</span></button>
+        </nav>
+    </main>
+    <footer class="site-footer">
+        <div class="page-shell footer-inner">
+            <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">V</span><span>VioGen<span class="brand-period">.</span></span></div>
+            <p>Prototipo académico · No almacena datos</p>
+        </div>
+    </footer>
+</body>
+</html>

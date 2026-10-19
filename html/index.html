@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Felipe Almeida, Victor Repollet, Victor Gordillo">
+    <meta name="description" content="Propuesta académica para organizar información relacionada con casos de violencia de género.">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>VioGen | Información organizada, atención cercana</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js?v=2" defer></script>
+</head>
+<body>
+    <form id="page-navigation" action="index.php" method="post"></form>
+    <header class="site-header">
+        <button class="brand" type="button" name="ir_al_inicio" data-scroll-target="inicio" aria-label="VioGen, ir al inicio">
+            <span class="brand-mark" aria-hidden="true">V</span>
+            <span>VioGen<span class="brand-period">.</span></span>
+        </button>
+        <nav class="main-nav" aria-label="Navegación principal">
+            <button type="button" name="ver_proyecto" data-scroll-target="proyecto">El proyecto</button>
+            <button type="button" name="ver_formularios" data-scroll-target="formularios">Formularios</button>
+            <button class="nav-cta" type="button" name="ver_equipo" data-scroll-target="equipo">Conócenos <span aria-hidden="true">↗</span></button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero page-shell" id="inicio" aria-labelledby="hero-title">
+            <div class="hero-copy reveal">
+                <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Proyecto académico · En desarrollo</p>
+                <h1 id="hero-title">La información,<br>con <span>más cuidado.</span></h1>
+                <p class="hero-description">
+                    Una propuesta digital para organizar información sobre víctimas, agresores e incidencias
+                    en un mismo lugar.
+                </p>
+                <div class="hero-actions">
+                    <button class="button button-primary" type="button" name="ver_formularios" data-scroll-target="formularios">Explorar formularios <span aria-hidden="true">↓</span></button>
+                    <button class="text-link" type="button" name="ver_proyecto" data-scroll-target="proyecto">Descubrir el proyecto <span aria-hidden="true">↗</span></button>
+                </div>
+                <div class="hero-note">
+                    <span class="note-icon" aria-hidden="true">✳</span>
+                    <p>Un prototipo académico pensado para crecer con responsabilidad.</p>
+                </div>
+            </div>
+
+            <aside class="hero-aside reveal" aria-label="Ilustración sobre acompañamiento y apoyo">
+                <div class="image-frame">
+                    <img src="assets/acompanamiento.svg" alt="Ilustración de dos personas acompañándose bajo un arco cálido">
+                    <div class="image-caption">
+                        <span class="caption-icon" aria-hidden="true">♡</span>
+                        <span>Escuchar · Organizar · Acompañar</span>
+                    </div>
+                </div>
+                <div class="aside-stamp" aria-hidden="true">
+                    <span>un espacio</span>
+                    <strong>de apoyo</strong>
+                    <span class="stamp-star">✳</span>
+                </div>
+            </aside>
+        </section>
+
+        <section class="project-section page-shell" id="proyecto" aria-labelledby="project-title">
+            <div class="section-heading reveal">
+                <p class="eyebrow">01 / La idea</p>
+                <h2 id="project-title">Una base sencilla.<br><span>Un propósito importante.</span></h2>
+            </div>
+            <div class="project-details reveal">
+                <p>
+                    VioGen nace como un proyecto de aprendizaje para dar forma a una aplicación que reúna
+                    distintos tipos de información en una estructura clara y fácil de ampliar.
+                </p>
+                <div class="detail-tags" aria-label="Áreas del proyecto">
+                    <span>Víctimas</span>
+                    <span>Agresores</span>
+                    <span>Incidencias</span>
+                    <span>Informes</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="forms-section" id="formularios" aria-labelledby="forms-title">
+            <div class="page-shell">
+                <div class="forms-heading reveal">
+                    <div>
+                        <p class="eyebrow">02 / Accesos</p>
+                        <h2 id="forms-title">Explora los formularios</h2>
+                    </div>
+                    <p>Selecciona un apartado para continuar.</p>
+                </div>
+                <div class="form-grid">
+                    <button class="form-card reveal" type="submit" form="page-navigation" name="abrir_formulario_victima">
+                        <span class="card-number">01</span>
+                        <span class="card-icon victim-icon" aria-hidden="true">♡</span>
+                        <span class="card-title">Víctima</span>
+                        <span class="card-description">Acceso al apartado de información de la víctima.</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="form-card reveal" type="submit" form="page-navigation" name="abrir_formulario_agresor">
+                        <span class="card-number">02</span>
+                        <span class="card-icon aggressor-icon" aria-hidden="true">◇</span>
+                        <span class="card-title">Agresor</span>
+                        <span class="card-description">Acceso al apartado de información del agresor.</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="form-card reveal" type="submit" form="page-navigation" name="abrir_formulario_incidencia">
+                        <span class="card-number">03</span>
+                        <span class="card-icon incident-icon" aria-hidden="true">✳</span>
+                        <span class="card-title">Incidencia</span>
+                        <span class="card-description">Acceso al registro de una incidencia.</span>
+                        <span class="card-arrow" aria-hidden="true">↗</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section page-shell reveal" id="equipo" aria-labelledby="team-title">
+            <div>
+                <p class="eyebrow">03 / El equipo</p>
+                <h2 id="team-title">Hecho en equipo,<br><span>con intención.</span></h2>
+            </div>
+            <ul class="team-list">
+                <li><span>01</span> Felipe Almeida</li>
+                <li><span>02</span> Victor Repollet</li>
+                <li><span>03</span> Victor Gordillo</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-shell footer-inner">
+            <button class="brand footer-brand" type="button" name="ir_al_inicio" data-scroll-target="inicio">
+                <span class="brand-mark" aria-hidden="true">V</span>
+                <span>VioGen<span class="brand-period">.</span></span>
+            </button>
+            <p>Prototipo académico en desarrollo.</p>
+            <button class="footer-top" type="button" name="ir_al_inicio" data-scroll-target="inicio">Volver arriba ↑</button>
+        </div>
+        <p class="disclaimer">
+            Proyecto no oficial. No introduzcas información personal ni datos reales.
+            No sustituye los servicios profesionales ni los recursos de emergencia.
+        </p>
+    </footer>
+</body>
+</html>

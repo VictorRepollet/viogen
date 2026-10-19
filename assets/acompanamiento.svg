@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 790" role="img" aria-labelledby="title desc">
+  <title id="title">Acompañamiento y apoyo</title>
+  <desc id="desc">Ilustración cálida de dos personas sentadas juntas bajo un arco, en un espacio de apoyo.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eadfd3"/>
+      <stop offset="1" stop-color="#d8c8ba"/>
+    </linearGradient>
+    <linearGradient id="arch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b48575"/>
+      <stop offset="1" stop-color="#986e66"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="790" fill="url(#wall)"/>
+  <circle cx="580" cy="148" r="92" fill="#e6b98e" opacity=".68"/>
+  <path d="M90 790V360C90 190 211 68 360 68s270 122 270 292v430H90Z" fill="url(#arch)"/>
+  <path d="M148 790V365c0-133 91-235 212-235s212 102 212 235v425H148Z" fill="#e9d9c8"/>
+  <path d="M148 622c102-43 302-49 424 0v168H148V622Z" fill="#d0b6a2"/>
+  <ellipse cx="362" cy="681" rx="221" ry="31" fill="#8e675c" opacity=".18"/>
+  <path d="M184 557c18-67 63-111 129-111 46 0 81 21 107 66l-20 180H206l-22-135Z" fill="#718071"/>
+  <path d="M412 522c21-56 62-83 116-75 47 7 77 41 87 103l-15 142H404l8-170Z" fill="#b66f5c"/>
+  <path d="M231 643c31-27 70-42 111-42 41 0 76 14 104 41v69H230l1-68Z" fill="#65535a"/>
+  <path d="M404 642c31-27 69-40 108-39 38 1 73 15 104 43v65H404v-69Z" fill="#69525f"/>
+  <path d="M262 433c0-54 34-91 82-91 46 0 75 36 75 87 0 48-28 83-77 83-47 0-80-32-80-79Z" fill="#a96951"/>
+  <path d="M285 374c11-37 39-56 72-53 33 4 53 26 59 60-22 12-49 18-78 17-21-1-39-8-53-24Z" fill="#493e3c"/>
+  <path d="M451 426c5-47 32-75 73-73 40 2 64 34 61 78-3 45-28 72-71 70-42-2-67-31-63-75Z" fill="#d39977"/>
+  <path d="M456 408c8-38 32-59 68-57 33 1 54 20 61 55-23 11-46 15-72 12-21-2-39-5-57-10Z" fill="#5b4842"/>
+  <path d="M362 526c12 16 27 27 45 32" fill="none" stroke="#d89d7c" stroke-linecap="round" stroke-width="14"/>
+  <path d="M404 557c19-7 35-17 48-32" fill="none" stroke="#bf8065" stroke-linecap="round" stroke-width="14"/>
+  <path d="M246 678c34 10 68 14 102 13" fill="none" stroke="#f3e5d6" stroke-linecap="round" stroke-width="5" opacity=".7"/>
+  <path d="M427 680c45 5 87 3 124-7" fill="none" stroke="#f3e5d6" stroke-linecap="round" stroke-width="5" opacity=".7"/>
+  <path d="M98 743c62-21 113-25 153-12" fill="none" stroke="#f1e6dc" stroke-linecap="round" stroke-width="4" opacity=".55"/>
+  <path d="M514 249c12-21 26-31 43-31" fill="none" stroke="#f6eee5" stroke-linecap="round" stroke-width="5" opacity=".7"/>
+  <circle cx="543" cy="197" r="5" fill="#f6eee5"/>
+</svg>
