@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     $datos = [];
-    $datos['fecha'] = htmlspecialchars($_POST['fecha']) ?? '';
+  /*  $datos['fecha'] = htmlspecialchars($_POST['fecha']) ?? '';
     $datos['hora'] = htmlspecialchars($_POST['hora']) ?? '';
     $datos['lugar'] = htmlspecialchars($_POST['lugar']) ?? '';
     $datos['indicador[asfixia]'] = htmlspecialchars($_POST['indicador[asfixia]']) ?? '';
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $datos['indicador[personas-expuestas]'] = htmlspecialchars($_POST['indicador[personas-expuestas]']) ?? '';
     $datos['indicador[sexo-forzado]'] = htmlspecialchars($_POST['indicador[sexo-forzado]']) ?? '';
     $datos['indicador[celos]'] = htmlspecialchars($_POST['indicador[celos]']) ?? '';
+*/
 }
 
 require('html/incidencia.html');

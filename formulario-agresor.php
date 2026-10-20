@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die;
     }
     $datos = [];
-    $datos['nombre'] = htmlspecialchars($_POST['nombre']) ?? '';
-    $datos['dni'] = htmlspecialchars($_POST['dni']) ?? '';
+    $datos['nombre'] = htmlspecialchars($_POST['nombre'] ?? '');
+ /* $datos['dni'] = htmlspecialchars($_POST['dni']) ?? '';
     $datos['email'] = htmlspecialchars($_POST['email']) ?? '';
     $datos['direccion'] = htmlspecialchars($_POST['direccion']) ?? '';
     $datos['datos-interes'] = htmlspecialchars($_POST['datos-interes']) ?? '';
@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datos['indicador[incumplimiento-medidas'] = htmlspecialchars($_POST[indicador[incumplimiento-medidas]]) ?? '';
     $datos['indicador[control-acoso'] = htmlspecialchars($_POST[indicador[control-acoso]]) ?? '';
     $datos['indicador[menores-a-cargo'] = htmlspecialchars($_POST[indicador[menores-a-cargo]]) ?? '';
+*/
 }
 
 require('html/agresor.html');

@@ -34,7 +34,7 @@
         </div>
 
         <form class="data-form" action="formulario-victima.php" method="post" autocomplete="off">
-            <input type="hidden" name="datos" value=''>
+            <input type="hidden" name="datos_victima" value='<?= json_encode($datos_victima)?>'>
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">01</span>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="field">
                         <label for="victim-name">Nombre completo</label>
-                        <input id="victim-name" name="nombre" type="text" placeholder="Nombre y apellidos">
+                        <input id="victim-name" name="nombre" type="text" placeholder="Nombre y apellidos" value="<?=$datos_victima['nombre']?>">
                     </div>
                     <div class="field">
                         <label for="victim-dni">DNI / documento identificativo</label>
