@@ -6,7 +6,7 @@
     <meta name="description" content="Formulario académico para describir una incidencia e indicadores de referencia.">
     <meta name="theme-color" content="#f7f5f1">
     <title>Incidencia | VioGen</title>
-    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/forms.css?v=3">
 </head>
 <body class="form-page incident-page">
     <form id="page-navigation" action="formulario-incidencia.php" method="post"></form>
@@ -30,10 +30,11 @@
 
         <div class="notice" role="note">
             <span class="notice-symbol" aria-hidden="true">i</span>
-            <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. Esta página no guarda ni envía información y no calcula un nivel de riesgo.</p>
+            <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. La incidencia y sus indicadores se guardan en un archivo JSON local; no se calcula un nivel de riesgo.</p>
         </div>
 
-        <form class="data-form" autocomplete="off">
+        <form class="data-form" action="formulario-incidencia.php" method="post" autocomplete="off">
+            <input type="hidden" name="datos" value="">
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">01</span>
@@ -47,6 +48,24 @@
                     <div class="field">
                         <label for="incident-time">Hora aproximada <span class="optional">Opcional</span></label>
                         <input id="incident-time" name="hora" type="time">
+                    </div>
+                    <div class="field">
+                        <label for="incident-victim">Víctima registrada</label>
+                        <div class="select-with-note">
+                            <select id="incident-victim" name="victima_id">
+                                <option value="" selected>No procede</option>
+                            </select>
+                            <span class="select-note">Víctima ya registrada</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="incident-aggressor">Agresor registrado</label>
+                        <div class="select-with-note">
+                            <select id="incident-aggressor" name="agresor_id">
+                                <option value="" selected>No procede</option>
+                            </select>
+                            <span class="select-note">Agresor ya registrado</span>
+                        </div>
                     </div>
                     <div class="field field-full">
                         <label for="incident-location">Lugar de la incidencia</label>
@@ -68,7 +87,7 @@
                 <p class="risk-guidance">Responde según la información disponible. “No consta” no equivale a “No”. Estos datos aún no generan una valoración.</p>
                 <div class="indicator-list">
                     <fieldset class="indicator">
-                        <legend><span class="indicator-number">07</span> ¿Se produjo estrangulamiento o intento de asfixia?</legend>
+                        <legend><span class="indicator-number">11</span> ¿Se produjo estrangulamiento o intento de asfixia?</legend>
                         <div class="radio-options">
                             <label><input type="radio" name="indicador[asfixia]" value="si"><span>Sí</span></label>
                             <label><input type="radio" name="indicador[asfixia]" value="no"><span>No</span></label>
@@ -76,7 +95,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
-                        <legend><span class="indicator-number">08</span> ¿Se utilizó o amenazó con utilizar un arma u objeto peligroso?</legend>
+                        <legend><span class="indicator-number">12</span> ¿Se utilizó o amenazó con utilizar un arma u objeto peligroso?</legend>
                         <div class="radio-options">
                             <label><input type="radio" name="indicador[arma]" value="si"><span>Sí</span></label>
                             <label><input type="radio" name="indicador[arma]" value="no"><span>No</span></label>
@@ -84,7 +103,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
-                        <legend><span class="indicator-number">09</span> ¿Hubo lesiones que requirieron atención sanitaria?</legend>
+                        <legend><span class="indicator-number">13</span> ¿Hubo lesiones que requirieron atención sanitaria?</legend>
                         <div class="radio-options">
                             <label><input type="radio" name="indicador[lesiones]" value="si"><span>Sí</span></label>
                             <label><input type="radio" name="indicador[lesiones]" value="no"><span>No</span></label>
@@ -92,19 +111,35 @@
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
-                        <legend><span class="indicator-number">10</span> ¿Había menores u otras personas dependientes presentes o expuestas?</legend>
+                        <legend><span class="indicator-number">14</span> ¿Había menores u otras personas dependientes presentes o expuestas?</legend>
                         <div class="radio-options">
                             <label><input type="radio" name="indicador[personas-expuestas]" value="si"><span>Sí</span></label>
                             <label><input type="radio" name="indicador[personas-expuestas]" value="no"><span>No</span></label>
                             <label><input type="radio" name="indicador[personas-expuestas]" value="no-consta"><span>No consta</span></label>
                         </div>
                     </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">15</span> ¿Hubo sexo forzado?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="indicator">
+                        <legend><span class="indicator-number">16</span> ¿Mostró celos el agresor en los últimos seis meses?</legend>
+                        <div class="radio-options">
+                            <label><input type="radio" name="indicador[celos]" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[celos]" value="no"><span>No</span></label>
+                            <label><input type="radio" name="indicador[celos]" value="no-consta"><span>No consta</span></label>
+                        </div>
+                    </fieldset>
                 </div>
             </section>
 
             <div class="form-footer">
-                <p>La evaluación de los indicadores y el guardado se implementarán en una fase posterior.</p>
-                <button class="button button-primary" type="button" name="guardar_formulario_incidencia" disabled>Guardado no disponible</button>
+                <p>Al aceptar, se guardará la incidencia vinculada a la víctima y al agresor seleccionados.</p>
+                <button class="button button-primary" type="submit" name="guardar_formulario_incidencia" value="1">Aceptar y guardar incidencia</button>
             </div>
         </form>
 

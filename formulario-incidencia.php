@@ -1,22 +1,30 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (isset($_POST['ir_inicio'])) { 
-        // Envía una cabecera HTTP que indica al navegador que debe dirigirse a index.php.
-        header('Location: index.php');
-        exit;
+        require('index.php');
+        die;
     }
 
     if (isset ($_POST['ir_agresor'])){ 
-        header('Location: formulario-agresor.php');
-        exit;
+        require('formulario-agresor.php');
+        die;
     }
+    
     if (isset ($_POST['ir_victima'])){ 
-        header('Location: formulario-victima.php');
-        exit;
+        require('formulario-victima.php');
+        die;
     }
+
+    $datos = [];
+    $datos['fecha'] = htmlspecialchars($_POST['fecha']) ?? '';
+    $datos['hora'] = htmlspecialchars($_POST['hora']) ?? '';
+    $datos['lugar'] = htmlspecialchars($_POST['lugar']) ?? '';
+    $datos['indicador[asfixia]'] = htmlspecialchars($_POST['indicador[asfixia]']) ?? '';
+    $datos['indicador[arma]'] = htmlspecialchars($_POST['indicador[arma]']) ?? '';
+    $datos['indicador[lesiones]'] = htmlspecialchars($_POST['indicador[lesiones]']) ?? '';
+    $datos['indicador[personas-expuestas]'] = htmlspecialchars($_POST['indicador[personas-expuestas]']) ?? '';
+    $datos['indicador[sexo-forzado]'] = htmlspecialchars($_POST['indicador[sexo-forzado]']) ?? '';
+    $datos['indicador[celos]'] = htmlspecialchars($_POST['indicador[celos]']) ?? '';
 }
 
-// __DIR__ es una constante mágica de PHP que contiene la ruta del directorio en el que está el archivo PHP actual.
-
-require __DIR__ . '/html/incidencia.html';
+require('html/incidencia.html');

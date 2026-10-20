@@ -1,18 +1,18 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){ // Comprobamos el método que sea POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){ 
     
-    if (isset ($_POST['abrir_formulario_victima'])){ // Comprobamos que al pulsar el botón de la página 2 nos lleve al poc2.php
-        header('Location: formulario-victima.php');
-        exit;
+    if (isset ($_POST['abrir_formulario_victima'])){ 
+        require('formulario-victima.php');
+        die;
     }
-    if (isset ($_POST['abrir_formulario_agresor'])){ // Comprobamos que all pulsar el botón de la página 3 nos lleve al poc3.php
-        header('Location: formulario-agresor.php');
-        exit;
+    if (isset ($_POST['abrir_formulario_agresor'])){ 
+        require('formulario-agresor.php');
+        die;
     }
-    if (isset ($_POST['abrir_formulario_incidencia'])){ // Comprobamos que all pulsar el botón de la página 3 nos lleve al poc3.php
-        header('Location: formulario-incidencia.php');
-        exit;
+    if (isset ($_POST['abrir_formulario_incidencia'])){
+        require('formulario-incidencia.php');
+        die;
     }
 }
-require __DIR__ . '/html/index.html';
+require('html/index.html');

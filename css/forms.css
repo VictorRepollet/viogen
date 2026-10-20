@@ -388,7 +388,8 @@ h1 span {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select {
     width: 100%;
     min-height: 45px;
     padding: 11px 13px;
@@ -400,6 +401,52 @@ h1 span {
     font: inherit;
     font-size: 0.8rem;
     transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.field select,
+.select-with-note select {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    display: block;
+    height: 45px;
+    padding: 0 38px 0 13px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #e3dfd8;
+    border-radius: 5px;
+    background-color: #fff;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.8rem;
+    line-height: normal;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #757773 50%),
+        linear-gradient(135deg, #757773 50%, transparent 50%);
+    background-position:
+        calc(100% - 17px) 50%,
+        calc(100% - 12px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.select-with-note {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.select-with-note select {
+    flex: 1;
+    min-width: 0;
+}
+
+.select-note {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 0.68rem;
 }
 
 .field textarea {
@@ -414,7 +461,8 @@ h1 span {
 }
 
 .field input:focus,
-.field textarea:focus {
+.field textarea:focus,
+.field select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
 }
@@ -691,6 +739,16 @@ h1 span {
 
     .field-grid {
         grid-template-columns: 1fr;
+    }
+
+    .select-with-note {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .select-with-note select {
+        width: 100%;
     }
 
     .field-full {
