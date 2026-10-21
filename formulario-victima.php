@@ -1,43 +1,62 @@
 <?php
-$datos_victima = [
-    'nombre' => ''
-];
-if(isset($_POST['datos_victima'])){
-    $datos_victima = json_decode($_POST['datos_victima'], true);
-}
+var_dump($_POST); // Solo para depurar. Déjalo activo en un único archivo, o saldrá duplicado.
 
+// 1. Recuperar las tres fichas que viajan en los campos ocultos
+$datos_victima = json_decode($_POST['datos_victima'] ?? '', true) ?? [
+    'victima_id' => '',
+    'nombre' => '',
+    'dni' => '',
+    'email' => '',
+    'direccion' => '',
+    'datos-interes' => '',
+    'indicador' => []
+];
+$datos_agresor    = json_decode($_POST['datos_agresor']    ?? '', true) ?? [
+    'agresor_id' => '',
+    'nombre' => '',
+    'dni' => '',
+    'email' => '',
+    'direccion' => '',
+    'datos-interes' => '',
+    'indicador' => []
+];
+$datos_incidencia = json_decode($_POST['datos_incidencia'] ?? '', true) ?? [
+    'fecha' => '',
+    'hora' => '',
+    'lugar' => '',
+    'descripcion' => '',
+    'indicador' => []
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    if (isset($_POST['ir_inicio'])) {
+
+    // 2. Solo actualizo esta ficha si el POST viene de este formulario
+    if (($_POST['origen'] ?? '') === 'victima') {
+        $datos_victima = [
+            'victima_id' => $_POST['victima_id'] ?? '',
+            'nombre' => $_POST['nombre'] ?? '',
+            'dni' => $_POST['dni'] ?? '',
+            'email' => $_POST['email'] ?? '',
+            'direccion' => $_POST['direccion'] ?? '',
+            'datos-interes' => $_POST['datos-interes'] ?? '',
+            'indicador' => $_POST['indicador'] ?? []
+        ];
+        // 3. Reescribo $_POST para que el archivo que se requiera lea los datos nuevos
+        $_POST['datos_victima'] = json_encode($datos_victima);
+    }
+
+    if (isset($_POST['ir_inicio'])){
         require('index.php');
         die;
     }
-
-    if (isset($_POST['ir_agresor'])) {
+    if (isset($_POST['ir_agresor'])){
         require('formulario-agresor.php');
         die;
     }
-
-    if (isset($_POST['ir_incidencia'])) {
+    if (isset($_POST['ir_incidencia'])){
         require('formulario-incidencia.php');
         die;
     }
-    if (isset($_POST['guardar_formulario_victima'])) {
-       $datos_victima['nombre'] = htmlspecialchars($_POST['nombre'] ?? ''); 
-    }
-    
- /* $datos_victima['dni'] = htmlspecialchars($_POST['dni'] ?? '');
-    $datos_victima['email'] = htmlspecialchars($_POST['email'] ?? '');
-    $datos_victima['direccion'] = htmlspecialchars($_POST['direccion']) ?? '');
-    $datos_victima['datos-interes'] = htmlspecialchars($_POST['datos_victima-interes'] ?? '');
-    $datos_victima['indicador[amenazas]'] = htmlspecialchars($_POST['indicador[amenazas]'] ?? '');
-    $datos_victima['indicador[escalada]'] = htmlspecialchars($_POST['indicador[escalada]'] ?? '');
-    $datos_victima['indicador[temor-inmediato]'] = htmlspecialchars($_POST['indicador[temor-inmediato]'] ?? '');
-    $datos_victima['indicador[menores-a-cargo]'] = htmlspecialchars($_POST['indicador[menores-a-cargo]'] ?? '');
-    $datos_victima['indicador[adicciones]'] = htmlspecialchars($_POST['indicador[adicciones]'] ?? '');
-*/
-var_dump($datos_victima);
 }
 
 require('html/victima.html');

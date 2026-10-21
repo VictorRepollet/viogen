@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/forms.css?v=3">
 </head>
 <body class="form-page incident-page">
-    <form id="page-navigation" action="formulario-incidencia.php" method="post"></form>
     <header class="site-header">
         <button class="brand" type="submit" form="page-navigation" name="ir_inicio" value="1" aria-label="VioGen, volver al inicio">
             <span class="brand-mark" aria-hidden="true">V</span>
@@ -33,8 +32,11 @@
             <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. La incidencia y sus indicadores se guardan en un archivo JSON local; no se calcula un nivel de riesgo.</p>
         </div>
 
-        <form class="data-form" action="formulario-incidencia.php" method="post" autocomplete="off">
-            <input type="hidden" name="datos" value="">
+        <form id="page-navigation" class="data-form" action="formulario-incidencia.php" method="post" autocomplete="off">
+            <input type="hidden" name="origen" value="victima">
+            <input type="hidden" name="datos_victima" value="<?= htmlspecialchars(json_encode($datos_victima)) ?>">
+            <input type="hidden" name="datos_agresor" value="<?= htmlspecialchars(json_encode($datos_agresor)) ?>">
+            <input type="hidden" name="datos_incidencia" value="<?= htmlspecialchars(json_encode($datos_incidencia)) ?>">
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">01</span>
@@ -89,49 +91,67 @@
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">11</span> ¿Se produjo estrangulamiento o intento de asfixia?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[asfixia]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[asfixia]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[asfixia]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[asfixia]" value="si"
+                            <?= ($datos_victima['indicador']['asfixia'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[asfixia]" value="no"
+                            <?= ($datos_victima['indicador']['asfixia'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[asfixia]" value="no-consta"
+                            <?= ($datos_victima['indicador']['asfixia'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">12</span> ¿Se utilizó o amenazó con utilizar un arma u objeto peligroso?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[arma]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[arma]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[arma]" value="no-consta"><span>No consta</span></label>
+                           <label><input type="radio" name="indicador[arma]" value="si"
+                            <?= ($datos_victima['indicador']['arma'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[arma]" value="no"
+                            <?= ($datos_victima['indicador']['arma'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[arma]" value="no-consta"
+                            <?= ($datos_victima['indicador']['arma'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">13</span> ¿Hubo lesiones que requirieron atención sanitaria?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[lesiones]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[lesiones]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[lesiones]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[lesiones]" value="si"
+                            <?= ($datos_victima['indicador']['lesiones'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[lesiones]" value="no"
+                            <?= ($datos_victima['indicador']['lesiones'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[lesiones]" value="no-consta"
+                            <?= ($datos_victima['indicador']['lesiones'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">14</span> ¿Había menores u otras personas dependientes presentes o expuestas?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[personas-expuestas]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[personas-expuestas]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[personas-expuestas]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="si"
+                            <?= ($datos_victima['indicador']['personas-expuestas'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="no"
+                            <?= ($datos_victima['indicador']['personas-expuestas'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[personas-expuestas]" value="no-consta"
+                            <?= ($datos_victima['indicador']['personas-expuestas'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">15</span> ¿Hubo sexo forzado?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[sexo-forzado]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[sexo-forzado]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[sexo-forzado]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="si"
+                            <?= ($datos_victima['indicador']['sexo-forzado'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="no"
+                            <?= ($datos_victima['indicador']['sexo-forzado'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[sexo-forzado]" value="no-consta"
+                            <?= ($datos_victima['indicador']['sexo-forzado'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">16</span> ¿Mostró celos el agresor en los últimos seis meses?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[celos]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[celos]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[celos]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[celos]" value="si"
+                            <?= ($datos_victima['indicador']['celos'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[celos]" value="no"
+                            <?= ($datos_victima['indicador']['celos'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[celos]" value="no-consta"
+                            <?= ($datos_victima['indicador']['celos'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                 </div>

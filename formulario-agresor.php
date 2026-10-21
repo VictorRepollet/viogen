@@ -1,30 +1,59 @@
 <?php
+// var_dump($_POST);
+
+$datos_victima = json_decode($_POST['datos_victima'] ?? '', true) ?? [
+    'victima_id' => '',
+    'nombre' => '',
+    'dni' => '',
+    'email' => '',
+    'direccion' => '',
+    'datos-interes' => '',
+    'indicador' => []
+];
+$datos_agresor = json_decode($_POST['datos_agresor'] ?? '', true) ?? [
+    'agresor_id' => '',
+    'nombre' => '',
+    'dni' => '',
+    'email' => '',
+    'direccion' => '',
+    'datos-interes' => '',
+    'indicador' => []
+];
+$datos_incidencia = json_decode($_POST['datos_incidencia'] ?? '', true) ?? [
+    'fecha' => '',
+    'hora' => '',
+    'lugar' => '',
+    'descripcion' => '',
+    'indicador' => []
+];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['ir_inicio'])) {
+
+    if (($_POST['origen'] ?? '') === 'agresor') {
+        $datos_agresor = [
+            'agresor_id'    => $_POST['agresor_id'] ?? '',
+            'nombre'        => $_POST['nombre'] ?? '',
+            'dni'           => $_POST['dni'] ?? '',
+            'email'         => $_POST['email'] ?? '',
+            'direccion'     => $_POST['direccion'] ?? '',
+            'datos-interes' => $_POST['datos-interes'] ?? '',
+            'indicador'     => $_POST['indicador'] ?? []
+        ];
+        $_POST['datos_agresor'] = json_encode($datos_agresor);
+    }
+
+    if (isset($_POST['ir_inicio'])){
         require('index.php');
         die;
     }
-
     if (isset($_POST['ir_victima'])){
-        require('formulario-victima.php');
-        die;
+    require('formulario-victima.php');
+    die;
     }
-
-    if (isset($_POST['ir_incidencia'])) {
+    if (isset($_POST['ir_incidencia'])){
         require('formulario-incidencia.php');
         die;
     }
-    $datos = [];
-    $datos['nombre'] = htmlspecialchars($_POST['nombre'] ?? '');
- /* $datos['dni'] = htmlspecialchars($_POST['dni']) ?? '';
-    $datos['email'] = htmlspecialchars($_POST['email']) ?? '';
-    $datos['direccion'] = htmlspecialchars($_POST['direccion']) ?? '';
-    $datos['datos-interes'] = htmlspecialchars($_POST['datos-interes']) ?? '';
-    $datos['indicador[antecedentes-violencia]'] = htmlspecialchars($_POST[indicador[antecedentes-violencia]]) ?? '';
-    $datos['indicador[incumplimiento-medidas'] = htmlspecialchars($_POST[indicador[incumplimiento-medidas]]) ?? '';
-    $datos['indicador[control-acoso'] = htmlspecialchars($_POST[indicador[control-acoso]]) ?? '';
-    $datos['indicador[menores-a-cargo'] = htmlspecialchars($_POST[indicador[menores-a-cargo]]) ?? '';
-*/
 }
 
 require('html/agresor.html');

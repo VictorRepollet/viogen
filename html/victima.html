@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/forms.css?v=3">
 </head>
 <body class="form-page victim-page">
-    <form id="page-navigation" action="formulario-victima.php" method="post"></form>
     <header class="site-header">
         <button class="brand" type="submit" form="page-navigation" name="ir_inicio" value="1" aria-label="VioGen, volver al inicio">
             <span class="brand-mark" aria-hidden="true">V</span>
@@ -33,8 +32,11 @@
             <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. Las fichas se guardan en un archivo JSON local y no calculan un nivel de riesgo.</p>
         </div>
 
-        <form class="data-form" action="formulario-victima.php" method="post" autocomplete="off">
-            <input type="hidden" name="datos_victima" value='<?= json_encode($datos_victima)?>'>
+        <form id="page-navigation" class="data-form" action="formulario-victima.php" method="post" autocomplete="off">
+            <input type="hidden" name="origen" value="victima">
+            <input type="hidden" name="datos_victima" value="<?= htmlspecialchars(json_encode($datos_victima)) ?>">
+            <input type="hidden" name="datos_agresor" value="<?= htmlspecialchars(json_encode($datos_agresor)) ?>">
+            <input type="hidden" name="datos_incidencia" value="<?= htmlspecialchars(json_encode($datos_incidencia)) ?>">
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">01</span>
@@ -45,7 +47,13 @@
                         <label for="victim-existing">Víctima registrada</label>
                         <div class="select-with-note">
                             <select id="victim-existing" name="victima_id">
-                                <option value="" selected>No procede</option>
+                                <option value="" <?= ($datos_victima['victima_id'] ?? '') === '' ? 'selected' : '' ?>>No procede</option>
+                                <?php foreach ($lista_victimas as $id => $v): ?>
+                                    <option value="<?= htmlspecialchars($id) ?>"
+                                        <?= ($datos_victima['victima_id'] ?? '') == $id ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($v['nombre']) ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -55,19 +63,19 @@
                     </div>
                     <div class="field">
                         <label for="victim-dni">DNI / documento identificativo</label>
-                        <input id="victim-dni" name="dni" type="text" placeholder="Número de documento">
+                        <input id="victim-dni" name="dni" type="text" placeholder="Número de documento" value="<?=$datos_victima['dni']?>">
                     </div>
                     <div class="field">
                         <label for="victim-email">Correo electrónico</label>
-                        <input id="victim-email" name="email" type="email" placeholder="nombre@ejemplo.com">
+                        <input id="victim-email" name="email" type="email" placeholder="nombre@ejemplo.com" value="<?=$datos_victima['email']?>">
                     </div>
                     <div class="field">
                         <label for="victim-address">Dirección</label>
-                        <input id="victim-address" name="direccion" type="text" placeholder="Dirección (datos ficticios)">
+                        <input id="victim-address" name="direccion" type="text" placeholder="Dirección (datos ficticios)" value="<?=$datos_victima['direccion']?>">
                     </div>
                     <div class="field field-full">
                         <label for="victim-notes">Datos de interés <span class="optional">Opcional</span></label>
-                        <textarea id="victim-notes" name="datos-interes" rows="4" placeholder="Anotaciones generales para el prototipo"></textarea>
+                        <textarea id="victim-notes" name="datos-interes" rows="4" placeholder="Anotaciones generales para el prototipo"><?=$datos_victima['datos-interes']?></textarea>
                     </div>
                 </div>
             </section>
@@ -82,41 +90,56 @@
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">01</span> ¿Ha recibido amenazas recientes de causar daño grave?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[amenazas]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[amenazas]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[amenazas]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[amenazas]" value="si"
+                            <?= ($datos_victima['indicador']['amenazas'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[amenazas]" value="no"
+                            <?= ($datos_victima['indicador']['amenazas'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[amenazas]" value="no-consta"
+                            <?= ($datos_victima['indicador']['amenazas'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">02</span> ¿Ha aumentado recientemente la frecuencia o gravedad de las agresiones?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[escalada]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[escalada]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[escalada]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[escalada]" value="si"
+                            <?= ($datos_victima['indicador']['escalada'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[escalada]" value="no"
+                            <?= ($datos_victima['indicador']['escalada'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[escalada]" value="no-consta"
+                            <?= ($datos_victima['indicador']['escalada'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">03</span> ¿La persona manifiesta temor por su seguridad inmediata?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[temor-inmediato]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[temor-inmediato]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[temor-inmediato]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[temor-inmediato]" value="si"
+                            <?= ($datos_victima['indicador']['temor-inmediato'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[temor-inmediato]" value="no"
+                            <?= ($datos_victima['indicador']['temor-inmediato'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[temor-inmediato]" value="no-consta"
+                            <?= ($datos_victima['indicador']['temor-inmediato'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">04</span> ¿La persona tiene a cargo menores de edad?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="si"
+                            <?= ($datos_victima['indicador']['menores-a-cargo'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no"
+                            <?= ($datos_victima['indicador']['menores-a-cargo'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no-consta"
+                            <?= ($datos_victima['indicador']['menores-a-cargo'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">05</span> ¿Presenta algun tipo de adicción de drogas o algun tóxico?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[adicciones]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[adicciones]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[adicciones]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[adiccion]" value="si"
+                            <?= ($datos_victima['indicador']['adiccion'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[adiccion]" value="no"
+                            <?= ($datos_victima['indicador']['adiccion'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[adiccion]" value="no-consta"
+                            <?= ($datos_victima['indicador']['adiccion'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                 </div>
@@ -124,7 +147,6 @@
 
             <div class="form-footer">
                 <p>La ficha se añadirá al registro local de víctimas para poder seleccionarla al crear una incidencia.</p>
-                <button class="button button-primary" type="submit" name="guardar_formulario_victima" value="1">Guardar víctima</button>
             </div>
         </form>
 

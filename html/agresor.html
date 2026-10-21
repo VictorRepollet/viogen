@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/forms.css?v=3">
 </head>
 <body class="form-page aggressor-page">
-    <form id="page-navigation" action="formulario-agresor.php" method="post"></form>
     <header class="site-header">
         <button class="brand" type="submit" form="page-navigation" name="ir_inicio" value="1" aria-label="VioGen, volver al inicio">
             <span class="brand-mark" aria-hidden="true">V</span>
@@ -33,8 +32,11 @@
             <p><strong>Prototipo académico:</strong> no introduzcas datos personales reales. Las fichas se guardan en un archivo JSON local y no calculan un nivel de riesgo.</p>
         </div>
 
-        <form class="data-form" action="formulario-agresor.php" method="post" autocomplete="off">
-            <input type="hidden" name="datos" value="">
+        <form id="page-navigation" class="data-form" action="formulario-agresor.php" method="post" autocomplete="off">
+            <input type="hidden" name="origen" value="agresor">
+            <input type="hidden" name="datos_victima" value="<?= htmlspecialchars(json_encode($datos_victima)) ?>">
+            <input type="hidden" name="datos_agresor" value="<?= htmlspecialchars(json_encode($datos_agresor)) ?>">
+            <input type="hidden" name="datos_incidencia" value="<?= htmlspecialchars(json_encode($datos_incidencia)) ?>">
             <section class="form-section">
                 <div class="section-title">
                     <span class="section-number">01</span>
@@ -51,23 +53,23 @@
                     </div>
                     <div class="field">
                         <label for="aggressor-name">Nombre completo</label>
-                        <input id="aggressor-name" name="nombre" type="text" placeholder="Nombre y apellidos">
+                        <input id="aggressor-name" name="nombre" type="text" placeholder="Nombre y apellidos" value="<?=$datos_agresor['nombre']?>">
                     </div>
                     <div class="field">
                         <label for="aggressor-dni">DNI / documento identificativo</label>
-                        <input id="aggressor-dni" name="dni" type="text" placeholder="Número de documento">
+                        <input id="aggressor-dni" name="dni" type="text" placeholder="Número de documento" value="<?=$datos_agresor['dni']?>">
                     </div>
                     <div class="field">
                         <label for="aggressor-email">Correo electrónico</label>
-                        <input id="aggressor-email" name="email" type="email" placeholder="nombre@ejemplo.com">
+                        <input id="aggressor-email" name="email" type="email" placeholder="nombre@ejemplo.com" value="<?=$datos_agresor['email']?>">
                     </div>
                     <div class="field">
                         <label for="aggressor-address">Dirección</label>
-                        <input id="aggressor-address" name="direccion" type="text" placeholder="Dirección (datos ficticios)">
+                        <input id="aggressor-address" name="direccion" type="text" placeholder="Dirección (datos ficticios)" value="<?=$datos_agresor['direccion']?>">
                     </div>
                     <div class="field field-full">
                         <label for="aggressor-notes">Datos de interés <span class="optional">Opcional</span></label>
-                        <textarea id="aggressor-notes" name="datos-interes" rows="4" placeholder="Anotaciones generales para el prototipo"></textarea>
+                        <textarea id="aggressor-notes" name="datos-interes" rows="4" placeholder="Anotaciones generales para el prototipo">  value="<?=$datos_agresor['datos-interes']?>"</textarea>
                     </div>
                 </div>
             </section>
@@ -82,41 +84,56 @@
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">06</span> ¿Constan antecedentes de violencia hacia la pareja u otras personas?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="si"
+                            <?= ($datos_agresor['indicador']['antecedentes-violencia'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no"
+                            <?= ($datos_agresor['indicador']['antecedentes-violencia'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[antecedentes-violencia]" value="no-consta"
+                            <?= ($datos_agresor['indicador']['antecedentes-violencia'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">07</span> ¿Consta el incumplimiento de medidas de protección o alejamiento?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="si"
+                            <?= ($datos_agresor['indicador']['incumplimiento-medidas'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no"
+                            <?= ($datos_agresor['indicador']['incumplimiento-medidas'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[incumplimiento-medidas]" value="no-consta"
+                            <?= ($datos_agresor['indicador']['incumplimiento-medidas'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">08</span> ¿Se describen conductas de control, acoso o vigilancia persistente?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[control-acoso]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[control-acoso]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[control-acoso]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[control-acoso]" value="si"
+                            <?= ($datos_agresor['indicador']['control-acoso'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[control-acoso]" value="no"
+                            <?= ($datos_agresor['indicador']['control-acoso'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[control-acoso]" value="no-consta"
+                            <?= ($datos_agresor['indicador']['control-acoso'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">09</span> ¿La persona tiene a cargo menores de edad?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="si"
+                            <?= ($datos_agresor['indicador']['menores-a-cargo'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no"
+                            <?= ($datos_agresor['indicador']['menores-a-cargo'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[menores-a-cargo]" value="no-consta"
+                            <?= ($datos_agresor['indicador']['menores-a-cargo'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                     <fieldset class="indicator">
                         <legend><span class="indicator-number">10</span> ¿Presenta algun tipo de adicción de drogas o algun tóxico?</legend>
                         <div class="radio-options">
-                            <label><input type="radio" name="indicador[adicciones]" value="si"><span>Sí</span></label>
-                            <label><input type="radio" name="indicador[adicciones]" value="no"><span>No</span></label>
-                            <label><input type="radio" name="indicador[adicciones]" value="no-consta"><span>No consta</span></label>
+                            <label><input type="radio" name="indicador[adicciones]" value="si"
+                            <?= ($datos_agresor['indicador']['adicciones'] ?? '') === 'si' ? 'checked' : '' ?>><span>Sí</span></label>
+                            <label><input type="radio" name="indicador[adicciones]" value="no"
+                            <?= ($datos_agresor['indicador']['adicciones'] ?? '') === 'no' ? 'checked' : '' ?>><span>No</span></label>
+                            <label><input type="radio" name="indicador[adicciones]" value="no-consta"
+                            <?= ($datos_agresor['indicador']['adicciones'] ?? '') === 'no-consta' ? 'checked' : '' ?>><span>No consta</span></label>
                         </div>
                     </fieldset>
                 </div>
