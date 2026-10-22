@@ -61,6 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         foreach ($datos_a_guardar as $archivo => $datos) {
+<<<<<<< HEAD
+=======
+            // Si la víctima o el agresor están vacíos, no se pisa el JSON que ya había
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
             if ($archivo !== 'datos/incidencias.json' && empty($datos['nombre'])) {
                 continue;
             }
@@ -75,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+<<<<<<< HEAD
     if (isset($_POST['generar_informe'])) {
 
         date_default_timezone_set('Europe/Madrid');
@@ -124,32 +129,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 0:
                 $nivel_riesgo = 'Sin indicadores de riesgo';
                 $clase_riesgo = 'riesgo-ninguno';
+=======
+    if (isset('generar_informe')) {
+        global $contador_indicadores;
+        foreach ($datos_victima['indicador'] as $key => $valor) {
+            if($valor === 'si'){
+                $contador_indicadores++;
+            }
+        }
+        foreach ($datos_agresor['indicador'] as $key => $valor) {
+            if($valor === 'si'){
+                $contador_indicadores++;
+            }
+        }
+        foreach ($datos_incidencia['indicador'] as $key => $valor) {
+            if($valor === 'si'){
+                $contador_indicadores++;
+            }
+        }
+
+        switch ($contador_indicadores) {
+            case 0:
+                echo '<p>No hay riesgo</p>';
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
                 break;
             case 1:
             case 2:
             case 3:
             case 4:
+<<<<<<< HEAD
                 $nivel_riesgo = 'Riesgo leve';
                 $clase_riesgo = 'riesgo-leve';
+=======
+                echo '<p>Riesgo Leve</p>';
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
                 break;
             case 5:
             case 6:
             case 7:
             case 8:
+<<<<<<< HEAD
                 $nivel_riesgo = 'Riesgo moderado';
                 $clase_riesgo = 'riesgo-moderado';
+=======
+                echo '<p>Riesgo Moderado</p>';
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
                 break;
             case 9:
             case 10:
             case 11:
             case 12:
+<<<<<<< HEAD
                 $nivel_riesgo = 'Riesgo alto';
                 $clase_riesgo = 'riesgo-alto';
+=======
+                echo '<p>Riesgo Alto</p>';
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
                 break;
             case 13:
             case 14:
             case 15:
             case 16:
+<<<<<<< HEAD
                 $nivel_riesgo = 'Riesgo extremo';
                 $clase_riesgo = 'riesgo-extremo';
                 break;
@@ -195,6 +236,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         require('html/informe-final.html');
         die;
+=======
+                echo '<p><style> color: red</style>Riesgo Extremo</p>';
+                break;
+            default:
+                echo '<p>Error a la hora de calcular el riesgo</p>';
+                break;
+        }
+        require('html/informe-final.html')
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
     }
 
     if (isset($_POST['ir_inicio'])){
@@ -211,6 +261,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+<<<<<<< HEAD
+=======
+// Leer la víctima registrada desde el JSON
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
 $lista_victimas = [];
 if (file_exists('datos/victimas.json')) {
     $registrada = json_decode(file_get_contents('datos/victimas.json'), true);
@@ -219,6 +273,10 @@ if (file_exists('datos/victimas.json')) {
     }
 }
 
+<<<<<<< HEAD
+=======
+// Leer el agresor registrado desde el JSON
+>>>>>>> 7970e2388a388d7d070aa5c2cfbd707f0d9764ab
 $lista_agresores = [];
 if (file_exists('datos/agresor.json')) {
     $registrado = json_decode(file_get_contents('datos/agresor.json'), true);
