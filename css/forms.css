@@ -928,3 +928,291 @@ h1 span {
 :focus-visible {
     outline-color: #38566f;
 }
+
+/* ==========================================================
+   Informe final
+   ========================================================== */
+
+.report-page {
+    --accent: #38566f;
+    --accent-soft: #e8eef2;
+}
+
+/* Colores según el nivel de riesgo */
+.riesgo-ninguno { --nivel: #3f6f56; }
+.riesgo-leve { --nivel: #7d6a1c; }
+.riesgo-moderado { --nivel: #a95a1c; }
+.riesgo-alto { --nivel: #a63d40; }
+.riesgo-extremo { --nivel: #7a1f2b; }
+
+.report-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    padding: 28px 31px;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--nivel, var(--accent));
+    border-radius: 4px;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(31, 41, 51, 0.035);
+}
+
+.report-label {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.report-level {
+    margin: 0 0 8px;
+    color: var(--nivel, var(--accent));
+    font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+    line-height: 1.1;
+}
+
+.report-text {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.risk-bar {
+    width: 100%;
+    height: 8px;
+    display: block;
+    overflow: hidden;
+    border: 0;
+    border-radius: 4px;
+    background: #e4e9ed;
+    color: var(--nivel, var(--accent));
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.risk-bar::-webkit-progress-bar {
+    border-radius: 4px;
+    background: #e4e9ed;
+}
+
+.risk-bar::-webkit-progress-value {
+    border-radius: 4px;
+    background: var(--nivel, var(--accent));
+}
+
+.risk-bar::-moz-progress-bar {
+    border-radius: 4px;
+    background: var(--nivel, var(--accent));
+}
+
+.report-score {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    color: var(--nivel, var(--accent));
+}
+
+.report-score strong {
+    font-size: 3.6rem;
+    font-weight: 650;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.report-score span {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.report-counts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.report-counts li {
+    padding: 14px 17px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--white);
+}
+
+.report-counts span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.report-counts strong {
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+}
+
+/* Datos de las fichas (parecidos a los campos, pero de solo lectura) */
+.report-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 19px 17px;
+    margin: 0;
+}
+
+.report-data > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.report-data .data-full {
+    grid-column: 1 / -1;
+}
+
+.report-data dt {
+    color: #4c4d4b;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.report-data dd {
+    min-height: 45px;
+    margin: 0;
+    padding: 11px 13px;
+    border: 1px solid #e3dfd8;
+    border-radius: 3px;
+    background: #f7f9fa;
+    color: var(--ink);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+.report-empty {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* Indicadores */
+.report-group-title {
+    margin: 22px 0 4px;
+    color: var(--plum);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.report-group-title:first-of-type {
+    margin-top: 0;
+}
+
+.report-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid #efede8;
+}
+
+.report-indicator p {
+    max-width: 72%;
+    margin: 0;
+    color: #454644;
+    font-size: 0.78rem;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.answer {
+    flex: 0 0 auto;
+    min-width: 88px;
+    min-height: 30px;
+    display: grid;
+    place-items: center;
+    padding: 0 10px;
+    border: 1px solid #e8e5df;
+    border-radius: 3px;
+    color: #777872;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.answer-si {
+    border-color: #d9aeb0;
+    background: #f8e4e4;
+    color: #87383b;
+}
+
+.answer-no {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--plum-dark);
+}
+
+@media (max-width: 700px) {
+    .report-summary {
+        grid-template-columns: 1fr;
+        padding: 24px 22px;
+    }
+
+    .report-data {
+        grid-template-columns: 1fr;
+    }
+
+    .report-data .data-full {
+        grid-column: auto;
+    }
+
+    .report-indicator {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .report-indicator p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .report-counts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Al imprimir o guardar como PDF solo se ve el informe */
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .site-header,
+    .form-switch,
+    .site-footer,
+    .notice {
+        display: none;
+    }
+
+    .form-section,
+    .report-summary,
+    .report-indicator {
+        break-inside: avoid;
+        box-shadow: none;
+    }
+}

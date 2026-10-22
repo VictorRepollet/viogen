@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informe final con los datos guardados de víctima, agresor e incidencia.">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>Informe final | VioGen</title>
+    <link rel="stylesheet" href="css/forms.css?v=6">
+</head>
+<body class="form-page report-page">
+    <header class="site-header">
+        <button class="brand" type="submit" form="page-navigation" name="ir_inicio" value="1" aria-label="VioGen, volver al inicio">
+            <span class="brand-mark" aria-hidden="true">V</span>
+            <span>VioGen<span class="brand-period">.</span></span>
+        </button>
+    </header>
+
+    <main class="page-shell">
+        <div class="breadcrumb"><span>Inicio</span><span aria-hidden="true">/</span><span>Incidencia</span><span aria-hidden="true">/</span><span>Informe</span></div>
+        <section class="form-intro">
+            <div>
+                <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Informe final · Datos guardados</p>
+                <h1>Informe de la <span>incidencia.</span></h1>
+                <p class="intro-text">Resumen generado a partir de los archivos JSON: víctima, agresor, incidencia e indicadores.</p>
+            </div>
+            <div class="form-art report-art" aria-hidden="true"><span>04</span><i>✳</i><b>datos reunidos,<br>en un solo lugar</b></div>
+        </section>
+
+        <div class="notice" role="note">
+            <span class="notice-symbol" aria-hidden="true">i</span>
+            <p><strong>Prototipo académico:</strong> el nivel se obtiene contando los indicadores marcados como «Sí». Es orientativo y no sustituye una valoración profesional. Informe generado el <?= date('d/m/Y H:i') ?>.</p>
+        </div>
+
+        <form id="page-navigation" action="formulario-incidencia.php" method="post">
+            <input type="hidden" name="datos_victima" value="<?= htmlspecialchars(json_encode($datos_victima)) ?>">
+            <input type="hidden" name="datos_agresor" value="<?= htmlspecialchars(json_encode($datos_agresor)) ?>">
+            <input type="hidden" name="datos_incidencia" value="<?= htmlspecialchars(json_encode($datos_incidencia)) ?>">
+        </form>
+
+        <?php if ($sin_datos): ?>
+
+        <section class="form-section">
+            <div class="section-title">
+                <span class="section-number">!</span>
+                <div><h2>Todavía no hay datos guardados</h2><p>El informe se genera a partir de los archivos JSON.</p></div>
+            </div>
+            <p class="report-empty">Vuelve a la incidencia, rellena las fichas y pulsa «Aceptar y guardar incidencia». Después podrás generar el informe.</p>
+        </section>
+
+        <?php else: ?>
+
+        <section class="report-summary <?= $clase_riesgo ?>">
+            <div>
+                <p class="report-label">Nivel orientativo</p>
+                <h2 class="report-level"><?= $nivel_riesgo ?></h2>
+                <p class="report-text"><?= $contador_indicadores ?> de <?= $total_indicadores ?> indicadores marcados como «Sí».</p>
+                <progress class="risk-bar" max="<?= $total_indicadores ?>" value="<?= $contador_indicadores ?>" aria-label="Indicadores marcados como Sí"><?= $contador_indicadores ?> de <?= $total_indicadores ?></progress>
+            </div>
+            <div class="report-score" aria-hidden="true"><strong><?= $contador_indicadores ?></strong><span>/ <?= $total_indicadores ?></span></div>
+        </section>
+
+        <ul class="report-counts">
+            <li><span>Víctima</span><strong><?= $si_victima ?> / 5</strong></li>
+            <li><span>Agresor</span><strong><?= $si_agresor ?> / 5</strong></li>
+            <li><span>Incidencia</span><strong><?= $si_incidencia ?> / 6</strong></li>
+        </ul>
+
+        <section class="form-section">
+            <div class="section-title">
+                <span class="section-number">01</span>
+                <div><h2>Datos de la víctima</h2><p>Información guardada en la ficha de víctima.</p></div>
+            </div>
+            <dl class="report-data">
+                <div>
+                    <dt>Nombre completo</dt>
+                    <dd><?= htmlspecialchars($informe_victima['nombre'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>DNI / documento identificativo</dt>
+                    <dd><?= htmlspecialchars($informe_victima['dni'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>Correo electrónico</dt>
+                    <dd><?= htmlspecialchars($informe_victima['email'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>Dirección</dt>
+                    <dd><?= htmlspecialchars($informe_victima['direccion'] ?? '') ?></dd>
+                </div>
+                <div class="data-full">
+                    <dt>Datos de interés</dt>
+                    <dd><?= htmlspecialchars($informe_victima['datos-interes'] ?? '') ?></dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="form-section">
+            <div class="section-title">
+                <span class="section-number">02</span>
+                <div><h2>Datos del agresor</h2><p>Información guardada en la ficha de agresor.</p></div>
+            </div>
+            <dl class="report-data">
+                <div>
+                    <dt>Nombre completo</dt>
+                    <dd><?= htmlspecialchars($informe_agresor['nombre'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>DNI / documento identificativo</dt>
+                    <dd><?= htmlspecialchars($informe_agresor['dni'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>Correo electrónico</dt>
+                    <dd><?= htmlspecialchars($informe_agresor['email'] ?? '') ?></dd>
+                </div>
+                <div>
+                    <dt>Dirección</dt>
+                    <dd><?= htmlspecialchars($informe_agresor['direccion'] ?? '') ?></dd>
+                </div>
+                <div class="data-full">
+                    <dt>Datos de interés</dt>
+                    <dd><?= htmlspecialchars($informe_agresor['datos-interes'] ?? '') ?></dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="form-section">
+            <div class="section-title">
+                <span class="section-number">03</span>
+                <div><h2>Datos de la incidencia</h2><p>Descripción del episodio registrado.</p></div>
+            </div>
+            <dl class="report-data">
+                <div>
+                    <dt>Fecha</dt>
+                    <dd><?= $fecha_incidencia ?></dd>
+                </div>
+                <div>
+                    <dt>Hora aproximada</dt>
+                    <dd><?= htmlspecialchars($informe_incidencia['hora'] ?? '') ?></dd>
+                </div>
+                <div class="data-full">
+                    <dt>Lugar de la incidencia</dt>
+                    <dd><?= htmlspecialchars($informe_incidencia['lugar'] ?? '') ?></dd>
+                </div>
+                <div class="data-full">
+                    <dt>Descripción de los hechos</dt>
+                    <dd><?= htmlspecialchars($informe_incidencia['descripcion'] ?? '') ?></dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="form-section risk-section">
+            <div class="section-title">
+                <span class="section-number">04</span>
+                <div><h2>Indicadores</h2><p>Respuestas guardadas en las tres fichas. Solo las respuestas «Sí» suman al nivel.</p></div>
+            </div>
+
+            <h3 class="report-group-title">Víctima · <?= $si_victima ?> de 5</h3>
+            <?php foreach ($preguntas_victima as $clave => $pregunta): ?>
+            <?php $valor = $informe_victima['indicador'][$clave] ?? 'sin-responder'; ?>
+            <div class="report-indicator">
+                <p><?= $pregunta ?></p>
+                <span class="answer answer-<?= htmlspecialchars($valor) ?>"><?= $respuestas[$valor] ?? 'Sin responder' ?></span>
+            </div>
+            <?php endforeach; ?>
+
+            <h3 class="report-group-title">Agresor · <?= $si_agresor ?> de 5</h3>
+            <?php foreach ($preguntas_agresor as $clave => $pregunta): ?>
+            <?php $valor = $informe_agresor['indicador'][$clave] ?? 'sin-responder'; ?>
+            <div class="report-indicator">
+                <p><?= $pregunta ?></p>
+                <span class="answer answer-<?= htmlspecialchars($valor) ?>"><?= $respuestas[$valor] ?? 'Sin responder' ?></span>
+            </div>
+            <?php endforeach; ?>
+
+            <h3 class="report-group-title">Incidencia · <?= $si_incidencia ?> de 6</h3>
+            <?php foreach ($preguntas_incidencia as $clave => $pregunta): ?>
+            <?php $valor = $informe_incidencia['indicador'][$clave] ?? 'sin-responder'; ?>
+            <div class="report-indicator">
+                <p><?= $pregunta ?></p>
+                <span class="answer answer-<?= htmlspecialchars($valor) ?>"><?= $respuestas[$valor] ?? 'Sin responder' ?></span>
+            </div>
+            <?php endforeach; ?>
+        </section>
+
+        <?php endif; ?>
+
+        <nav class="form-switch" aria-label="Volver">
+            <button type="submit" form="page-navigation" name="volver_incidencia" value="1"><span aria-hidden="true">←</span> Volver a la incidencia</button>
+            <button type="submit" form="page-navigation" name="ir_inicio" value="1">Ir al inicio <span aria-hidden="true">→</span></button>
+        </nav>
+    </main>
+    <footer class="site-footer">
+        <div class="page-shell footer-inner">
+            <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">V</span><span>VioGen<span class="brand-period">.</span></span></div>
+            <p>Prototipo académico · Informe orientativo</p>
+        </div>
+    </footer>
+</body>
+</html>
